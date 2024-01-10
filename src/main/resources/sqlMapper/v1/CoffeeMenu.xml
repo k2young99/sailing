@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.sailing.v1.dao.MenuDao">
+    <!-- 메뉴 조회 -->
+    <select id="doList" resultType="map">
+        SELECT no, coffee, kind, price,
+        DATE_FORMAT(reg_day,'%Y.%m.%d') AS reg_day,
+        DATE_FORMAT(mod_day,'%Y.%m.%d') AS mod_day
+        FROM coffee_menu;
+    </select>
+
+    <!-- 메뉴 삭제 -->
+
+    <select id="doListOne" resultType="map">
+        SELECT no, coffee, kind, price,
+        DATE_FORMAT(reg_day,'%Y.%m.%d') AS reg_day,
+        DATE_FORMAT(mod_day,'%Y.%m.%d') AS mod_day
+        FROM coffee_menu
+        where no = #{strNo}
+    </select>
+
+    <insert id="doInsert">
+        INSERT INTO coffee_menu (coffee, kind, price)
+        VALUES(#{strCoffee},#{strKind},#{strPrice})
+    </insert>
+
+    <update id="doUpdate">
+        update coffee_menu set
+        coffee = #{strCoffee},
+        kind = #{strKind},
+        price = #{strPrice}
+        where no =#{strNo}
+    </update>
+
+    <delete id="doDelete">
+        DELETE from coffee_menu where no = #{strNo}
+    </delete>
+
+    <!--
+       <![CDATA[   ]]>   : xml 파싱에 관여하지 않도록 처리
+       <  	&lt;
+       >	&gt;
+   -->
+
+    <!--검색에 의한 쿼리 -->
+    <select id="doSearch" resultType="map">
+        SELECT no, coffee, kind, price,
+        DATE_FORMAT(reg_day,'%Y.%m.%d') AS reg_day,
+        DATE_FORMAT(mod_day,'%Y.%m.%d') AS mod_day
+        FROM coffee_menu
+        where 1=1
+        and reg_day >= DATE_FORMAT(#{strStartDate},'%y%m%d')
+        and reg_day &lt; DATE_ADD(DATE_FORMAT(#{strEndDate},'%y%m%d'), INTERVAL + 1 DAY)
+        <if test="strCoffee != 'ALL'">
+            and coffee like CONCAT(#{strCoffee},'%')
+        </if>
+        <if test="strKind != 'ALL'">
+            and kind = #{strKind}
+        </if>
+    </select>
+
+    <!--메뉴 가격 수정 -->
+    <update id="doUpdatePrice">
+        update coffee_menu set
+        price = CAST(#{strPrice} as INTEGER)
+        where no = CAST(#{strNo} as INTEGER)
+    </update>
+
+    <!-- 가격 로그입력 -->
+    <insert id="doUpdateLog">
+        INSERT INTO log (coffee_no, price)
+        VALUES (#{strNo}, CAST(#{strPrice} as INTEGER))
+    </insert>
+</mapper>
