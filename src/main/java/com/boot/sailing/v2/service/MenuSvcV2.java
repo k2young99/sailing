@@ -1,6 +1,6 @@
-package com.boot.sailing.v1.service;
+package com.boot.sailing.v2.service;
 
-import com.boot.sailing.v1.dao.MenuDao;
+import com.boot.sailing.v2.dao.MenuDaoV2;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,12 +12,12 @@ import java.util.Map;
 
 @Service
 @Log4j2
-public class MenuSvc {
+public class MenuSvcV2 {
 
     @Autowired
-    MenuDao menuDao;
+    MenuDaoV2 menuDao;
 
-    public MenuSvc() {
+    public MenuSvcV2() {
         log.info("================ MenuSvc , 생성자 ===================");
     }
 

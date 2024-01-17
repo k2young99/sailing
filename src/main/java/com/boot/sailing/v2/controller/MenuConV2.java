@@ -1,6 +1,6 @@
-package com.boot.sailing.v1.controller;
+package com.boot.sailing.v2.controller;
 
-import com.boot.sailing.v1.service.MenuSvc;
+import com.boot.sailing.v2.service.MenuSvcV2;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,18 +10,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/v1")
+@RequestMapping("/v2")
 @Log4j2
-public class MenuCon {
+public class MenuConV2 {
 
     @Autowired
-    MenuSvc menuSvc;
+    MenuSvcV2 menuSvc;
 
     @RequestMapping("/menu")
     public String doMenu(Model model){
@@ -33,12 +31,12 @@ public class MenuCon {
         model.addAttribute("list", list);
         model.addAttribute("hello", " ========== MenuCon ======== ");
 
-        return "/v1/menu/menu";
+        return "/v2/menu/menu";
     }
 
     @GetMapping("/menu_ins")
     public String doInsert(){
-        return "/v1/menu/menu_ins";
+        return "/v2/menu/menu_ins";
     }
 
     @PostMapping("/menu_ins")
@@ -50,21 +48,21 @@ public class MenuCon {
         log.info(strCoffee);
         int i = menuSvc.doInsert(strCoffee, strKind, strPrice);
 
-        return "redirect:/v1/menu";
+        return "redirect:/v2/menu";
     }
 
     @GetMapping("/menu_del")
     public String doDelete(@RequestParam("no") String strNo){
         log.info("strNo : " + strNo);
         int i = menuSvc.doDelete(strNo);
-        return  "redirect:/v1/menu";
+        return  "redirect:/v2/menu";
     }
 
     @GetMapping("/menu_up")
     public String doUpdate(Model model, @RequestParam("no") String strNo){
         Map<String ,Object> map = menuSvc.doListOne(strNo);
         model.addAttribute("map",map);
-        return "/v1/menu/menu_up";
+        return "/v2/menu/menu_up";
     }
 
 
@@ -77,7 +75,7 @@ public class MenuCon {
     ){
 
         int i = menuSvc.doUpdate(strNo,strCoffee,strKind,strPrice);
-        return  "redirect:/v1/menu";
+        return  "redirect:/v2/menu";
     }
 
     /*조회하기
@@ -99,7 +97,7 @@ public class MenuCon {
 
         model.addAttribute("list",list);
 
-        return  "/v1/menu/menu";
+        return  "/v2/menu/menu";
     }
 
     /* 가격수정 다중 체크 */
@@ -117,7 +115,7 @@ public class MenuCon {
                 int int2 = menuSvc.doUpdatePriceOne(chkList,strPrice);
         }
 
-        return "redirect:/v1/menu";
+        return "redirect:/v2/menu";
     }
 
 }

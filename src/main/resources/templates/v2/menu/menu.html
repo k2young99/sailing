@@ -12,7 +12,7 @@
 <body>
 
 <!-- 헤더 위치 -->
-<th:block th:replace="/v1/comm/header :: headerFragment"></th:block>
+<th:block th:replace="/v2/comm/header :: headerFragment"></th:block>
 
 
 <div id="main" style="font-size:large; text-align: center; ">
@@ -24,7 +24,7 @@
             >
         </h3>
 
-        <form name="fm_menu" autocomplete="on" action="/v1/menu_search" method="post">
+        <form name="fm_menu" autocomplete="on" action="/v2/menu_search" method="post">
             <fieldset>
 
                 <legend> [검색조건]</legend>
@@ -45,7 +45,7 @@
                 &nbsp;&nbsp;<input type="submit" value="조회"
                                    style="width: 80px;height: 30px;font-weight: bold; font-size: medium">
                 &nbsp;&nbsp;<button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a
-                    href="/v1/menu_ins">등록</a></button>
+                    href="/v2/menu_ins">등록</a></button>
                 <!--                <button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a href="~~~">삭제</a>-->
                 <button type="button" id="IdUpdateAll"
                         style="width: 80px;height: 30px;font-weight: bold; font-size: medium" onclick="onModify()">가격수정
@@ -61,7 +61,7 @@
 
     </div>
 
-    <form name="formTable" id="IdFormTable" method="post" action="/v1/menu_updatePrice">
+    <form name="formTable" id="IdFormTable" method="post" action="/v2/menu_updatePrice">
         <table class="table">
             <thead>
             <tr class="tr_td">
@@ -90,8 +90,8 @@
                 <td th:text="${#numbers.formatInteger(prod.get('price'),3,'COMMA')}">가격</td>
                 <td th:text="${prod.get('reg_day')}">등록일</td>
                 <td th:text="${prod.get('mod_day')}">수정일</td>
-                <td><a th:href="@{/v1/menu_up?(no=${prod.get('no')})}">수정</a></td>
-                <td><a th:href="@{/v1/menu_del?(no=${prod.get('no')})}">삭제</a></td>
+                <td><a th:href="@{/v2/menu_up?(no=${prod.get('no')})}">수정</a></td>
+                <td><a th:href="@{/v2/menu_del?(no=${prod.get('no')})}">삭제</a></td>
             </tr>
 
 
@@ -102,7 +102,7 @@
 </div>
 
 <!-- 푸터 위치 -->
-<th:block th:replace="/v1/comm/footer :: footerFragment"></th:block>
+<th:block th:replace="/v2/comm/footer :: footerFragment"></th:block>
 
 <script>
     /* 현재 시간 날짜에 적용시키기 */
