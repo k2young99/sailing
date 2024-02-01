@@ -1,14 +1,12 @@
 package com.boot.sailing.v2.controller;
 
 import com.boot.sailing.v2.service.MenuSvcV2;
+import com.boot.sailing.v2.vo.Coffee_menu;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -25,7 +23,7 @@ public class MenuConV2 {
     public String doMenu(Model model){
 
         // Data 만들기 , List , Map
-        List<Map<String, Object>> list = menuSvc.doList();
+        List<Coffee_menu> list = menuSvc.doList();
 
         // Data 송부
         model.addAttribute("list", list);
@@ -40,13 +38,11 @@ public class MenuConV2 {
     }
 
     @PostMapping("/menu_ins")
-    public String doInsertPost(@RequestParam("coffee") String strCoffee,
-                               @RequestParam("kind") String strKind,
-                               @RequestParam("price") String strPrice
+    public String doInsertPost(@ModelAttribute Coffee_menu coffeeMenu
     ){
         log.info("==========================================================");
-        log.info(strCoffee);
-        int i = menuSvc.doInsert(strCoffee, strKind, strPrice);
+        log.info(coffeeMenu);
+        int i = menuSvc.doInsert(coffeeMenu);
 
         return "redirect:/v2/menu";
     }
@@ -91,7 +87,7 @@ public class MenuConV2 {
 
     log.info("strStartDate :"+ strStartDate +" "+ strEndDate +" "+ strCoffee +" "+ strKind);
 
-        List<Map<String,Object>> list = menuSvc.doSearch(strStartDate,strEndDate,strCoffee,strKind);
+        List<Coffee_menu> list = menuSvc.doSearch(strStartDate,strEndDate,strCoffee,strKind);
 
     log.info("서치 리스트 :"+ list);
 

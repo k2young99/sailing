@@ -1,5 +1,6 @@
 package com.boot.sailing.v2.dao;
 
+import com.boot.sailing.v2.vo.Coffee_menu;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -8,9 +9,9 @@ import java.util.Map;
 
 @Mapper
 public interface MenuDaoV2 {
-    List<Map<String, Object>> doList();
+    List<Coffee_menu> doList();
 
-    int doInsert(@Param("strCoffee") String strCoffee,@Param("strKind")  String strKind,@Param("strPrice") String strPrice);
+    int doInsert(Coffee_menu coffeeMenu);
 
 
     int doDelete(@Param("strNo") String strNo);
@@ -18,7 +19,7 @@ public interface MenuDaoV2 {
 
     int doUpdate(@Param("strNo") String strNo,  @Param("strCoffee") String strCoffee,@Param("strKind")  String strKind,@Param("strPrice") String strPrice);
 
-    List<Map<String, Object>> doSearch(@Param("strStartDate") String strStartDate,@Param("strEndDate") String strEndDate,@Param("strCoffee") String strCoffee,@Param("strKind") String strKind);
+    List<Coffee_menu> doSearch(@Param("strStartDate") String strStartDate,@Param("strEndDate") String strEndDate,@Param("strCoffee") String strCoffee,@Param("strKind") String strKind);
 
     int doUpdatePrice(@Param("strNo") String strNo, @Param("strPrice") String strPrice);
 

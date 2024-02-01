@@ -28,11 +28,14 @@
             <fieldset>
 
                 <legend> [검색조건]</legend>
-                <label>등록기간</label><input type="date" id="start_date" name="start_date" min="2020-01-01"
+                <label>등록기간</label>
+                <input type="date" id="start_date" name="start_date" min="2020-01-01"
                                           max="2024-12-31">
-                - <input type="date" id="end_date" name="end_date" min="2020-01-01" max="2024-12-31">
+                -
+                <input type="date" id="end_date" name="end_date" min="2020-01-01" max="2024-12-31">
                 &nbsp;&nbsp;
-                <label>메뉴명</label> <input type="text" id="coffee" name="coffee">
+                <label>메뉴명</label>
+                <input type="text" id="coffee" name="coffee">
                 &nbsp;&nbsp;
                 <label>종류</label>
                 <select id="kind" name="kind">
@@ -42,10 +45,13 @@
                     <option value="에이드">에이드</option>
                 </select>
 
-                &nbsp;&nbsp;<input type="submit" value="조회"
-                                   style="width: 80px;height: 30px;font-weight: bold; font-size: medium">
-                &nbsp;&nbsp;<button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a
-                    href="/v2/menu_ins">등록</a></button>
+                &nbsp;&nbsp;
+                <input type="submit" value="조회"
+                       style="width: 80px;height: 30px;font-weight: bold; font-size: medium">
+                &nbsp;&nbsp;
+                <button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a
+                    href="/v2/menu_ins">등록</a>
+                </button>
                 <!--                <button style="width: 80px;height: 30px;font-weight: bold; font-size: medium"><a href="~~~">삭제</a>-->
                 <button type="button" id="IdUpdateAll"
                         style="width: 80px;height: 30px;font-weight: bold; font-size: medium" onclick="onModify()">가격수정
@@ -80,18 +86,16 @@
 
             <tbody id="t_body">
             <!--- 데이타 출력 부분 -->
-
-
-            <tr th:each="prod : ${list}">
-                <td><input type="checkbox" name="chkCoffeeNo" th:value="${prod.get('no')}" chk</td>
-                <td th:text="${prod.get('no')}">커피No</td>
-                <td th:text="${prod.get('coffee')}">메뉴명</td>
-                <td th:text="${prod.get('kind')}">종류</td>
-                <td th:text="${#numbers.formatInteger(prod.get('price'),3,'COMMA')}">가격</td>
-                <td th:text="${prod.get('reg_day')}">등록일</td>
-                <td th:text="${prod.get('mod_day')}">수정일</td>
-                <td><a th:href="@{/v2/menu_up?(no=${prod.get('no')})}">수정</a></td>
-                <td><a th:href="@{/v2/menu_del?(no=${prod.get('no')})}">삭제</a></td>
+         <tr th:each="prod : ${list}">
+                <td><input type="checkbox" name="chkCoffeeNo" th:value="${prod.getNo()}"></td>
+                <td th:text="${prod.getNo()}">커피No</th>
+                <td th:text="${prod.getCoffee()}">메뉴명</td>
+                <td th:text="${prod.getKind()}">종류</td>
+                <td th:text="${#numbers.formatInteger(prod.getPrice(),0,'COMMA')}">가격</td>
+                <td th:text="${prod.getReg_day()}">등록일</td>
+                <td th:text="${prod.getMod_day()}">수정일</td>
+                <td><a th:href="@{/v2/menu_up(no=${prod.getNo()})}">수정</a></td>
+                <td><a th:href="@{/v2/menu_del(no=${prod.getNo()})}">삭제</a></td>
             </tr>
 
 

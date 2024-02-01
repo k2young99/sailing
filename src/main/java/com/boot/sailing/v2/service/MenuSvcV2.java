@@ -1,6 +1,7 @@
 package com.boot.sailing.v2.service;
 
 import com.boot.sailing.v2.dao.MenuDaoV2;
+import com.boot.sailing.v2.vo.Coffee_menu;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,10 +22,10 @@ public class MenuSvcV2 {
         log.info("================ MenuSvc , 생성자 ===================");
     }
 
-    public List<Map<String, Object>> doList(){
+    public List<Coffee_menu> doList(){
 
         // Data 만들기 , List , Map
-        List<Map<String, Object>> list = menuDao.doList();
+        List<Coffee_menu> list = menuDao.doList();
 
 //        log.info("메뉴조회 리스트: "+list);
 
@@ -71,8 +72,8 @@ public class MenuSvcV2 {
     }
 
 
-    public int doInsert(String strCoffee, String strKind, String strPrice) {
-        int i = menuDao.doInsert(strCoffee, strKind, strPrice);
+    public int doInsert(Coffee_menu coffeeMenu) {
+        int i = menuDao.doInsert(coffeeMenu);
         return i;
 
 
@@ -97,8 +98,8 @@ public class MenuSvcV2 {
         return i;
     }
 
-    public List<Map<String, Object>> doSearch(String strStartDate, String strEndDate, String strCoffee, String strKind) {
-        List<Map<String,Object>> list = menuDao.doSearch(strStartDate,strEndDate,strCoffee,strKind);
+    public List<Coffee_menu> doSearch(String strStartDate, String strEndDate, String strCoffee, String strKind) {
+        List<Coffee_menu> list = menuDao.doSearch(strStartDate,strEndDate,strCoffee,strKind);
         return list;
     }
 

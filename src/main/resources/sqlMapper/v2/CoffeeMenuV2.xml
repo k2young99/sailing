@@ -5,7 +5,7 @@
 
 <mapper namespace="com.boot.sailing.v2.dao.MenuDaoV2">
     <!-- 메뉴 조회 -->
-    <select id="doList" resultType="map">
+    <select id="doList" resultType="com.boot.sailing.v2.vo.Coffee_menu">
         SELECT no, coffee, kind, price,
         DATE_FORMAT(reg_day,'%Y.%m.%d') AS reg_day,
         DATE_FORMAT(mod_day,'%Y.%m.%d') AS mod_day
@@ -24,7 +24,7 @@
 
     <insert id="doInsert">
         INSERT INTO coffee_menu (coffee, kind, price)
-        VALUES(#{strCoffee},#{strKind},#{strPrice})
+        VALUES(#{coffee},#{kind},CAST(#{price} as INTEGER))
     </insert>
 
     <update id="doUpdate">
@@ -46,7 +46,7 @@
    -->
 
     <!--검색에 의한 쿼리 -->
-    <select id="doSearch" resultType="map">
+    <select id="doSearch" resultType="com.boot.sailing.v2.vo.Coffee_menu">
         SELECT no, coffee, kind, price,
         DATE_FORMAT(reg_day,'%Y.%m.%d') AS reg_day,
         DATE_FORMAT(mod_day,'%Y.%m.%d') AS mod_day
