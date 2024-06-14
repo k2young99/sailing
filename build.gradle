@@ -31,6 +31,9 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.3.1'
+    implementation files('C:/jar/commons-codec-1.10.jar')
+    implementation files('C:/jar/MOIN.Security.SLO.Decrypt.jar')
+    implementation files('C:/jar/gson-2.8.5.jar')
 }
 
 tasks.named('bootBuildImage') {

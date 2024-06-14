@@ -1,6 +1,11 @@
 --- # Configuration Port
 server:
   port: 8080
+  ssl:
+    enabled: true
+    key-store: "src/main/resources/keystore.p12"
+    key-store-type: "PKCS12"
+    key-store-password: "^ldcc2024"
 
 --- # Configuration Thymeleaf
 spring:

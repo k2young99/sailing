@@ -12,8 +12,6 @@
         FROM coffee_menu;
     </select>
 
-    <!-- 메뉴 삭제 -->
-
     <select id="doListOne" resultType="map">
         SELECT no, coffee, kind, price,
         DATE_FORMAT(reg_day,'%Y.%m.%d') AS reg_day,
