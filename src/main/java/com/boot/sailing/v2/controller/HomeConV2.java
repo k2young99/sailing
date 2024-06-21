@@ -1,5 +1,6 @@
 package com.boot.sailing.v2.controller;
 
+import com.boot.sailing.v2.service.HomeSvcV2;
 import com.google.gson.Gson;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -23,9 +24,13 @@ import java.security.NoSuchAlgorithmException;
 @Log4j2
 public class HomeConV2 {
 
-    @GetMapping("/home")
-    public String doHome(Model model, @RequestParam("v") String v){
+    HomeSvcV2 homeSvc;
 
+    @GetMapping("/home")
+    public String doHome(Model model, @RequestParam(required = false, value = "v") String v){
+/*
+
+//  (암호화 키값)   https://10.131.144.40:8080/v2/home?v=dI1OcLHwbOJeX6MQjY8II75F9YWW8RGmmMRR3SLMF8HGhHC7ryRjSEu0a-Cx5OL46y51J5g2liukHkpK7192EA
         log.info("SLO 로그 : " + v);
 
         try{
@@ -42,13 +47,16 @@ public class HomeConV2 {
 
             System.out.println("timestamp : " + sloLoginData.timestamp);
 
-            model.addAttribute("data",sloLoginData.email);
+            model.addAttribute("data",sloLoginData);
 
         } catch (InvalidKeyException | UnsupportedEncodingException | NoSuchAlgorithmException
                 | NoSuchPaddingException | InvalidAlgorithmParameterException | IllegalBlockSizeException
                 | BadPaddingException el) {
             el.printStackTrace();
         }
+*/
+
+
 
         return "/v2/home/home";
     }
@@ -62,12 +70,13 @@ public class HomeConV2 {
         return str;
     }
 
+    /*
     class SLO_DATA{
         public String employee_num;
         public String login_id;
         public String timestamp;
         public String hostaddress;
         public String email;
-    }
+    }*/
 
 }
