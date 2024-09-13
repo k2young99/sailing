@@ -16,6 +16,7 @@ import java.util.Map;
 @Log4j2
 public class MenuConV2 {
 
+    //최초접속을 Menu로
     @Autowired
     MenuSvcV2 menuSvc;
 
@@ -102,13 +103,21 @@ public class MenuConV2 {
                                 @RequestParam("hidden_price") String strPrice
     ){
         log.info("가격수정 리스트 : "+chkList+" "+strPrice);
-        if(chkList != null){
+
+        try{
+
+            if(chkList != null){
 //            for(String strNo : chkList){
 //                int int1 = menuSvc.doInsertLog(strNo,strPrice);
 //                int int2 = menuSvc.doUpdatePrice(strNo,strPrice);
 //            }
-                int int1 = menuSvc.doInsertLogOne(chkList,strPrice);
-                int int2 = menuSvc.doUpdatePriceOne(chkList,strPrice);
+                int int1 = menuSvc.doUpdateInsert(chkList,strPrice);
+//                int int1 = menuSvc.doInsertLogOne(chkList,strPrice);
+//                int int2 = menuSvc.doUpdatePriceOne(chkList,strPrice);
+            }
+        } catch (Exception e){
+
+            System.out.println(e.getMessage());
         }
 
         return "redirect:/v2/menu";

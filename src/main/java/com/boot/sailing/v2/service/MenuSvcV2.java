@@ -5,7 +5,11 @@ import com.boot.sailing.v2.vo.Coffee_menu;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -115,14 +119,31 @@ public class MenuSvcV2 {
     }
 
     /* 로그원 쿼리 */
-    public int doInsertLogOne(List<String> chkList, String strPrice) {
+    /*public int doInsertLogOne(List<String> chkList, String strPrice) {
         int int1 = menuDao.doInsertLogOne(chkList,strPrice);
         return int1;
-    }
+    }*/
 
     /* 업데이트 원쿼리 */
-    public int doUpdatePriceOne(List<String> chkList, String strPrice) {
+   /* public int doUpdatePriceOne(List<String> chkList, String strPrice) {
         int int2 = menuDao.doUpdatePriceOne(chkList,strPrice);
         return int2;
+    }*/
+
+    @Transactional
+    public int doUpdateInsert(List<String> chkList, String strPrice) throws FileNotFoundException {
+        log.info("=====================||||||||||||||======================");
+
+        File file = new File("not_existing_file.txt");
+        FileInputStream stream = new FileInputStream(file);
+
+        int int2 = menuDao.doUpdatePriceOne(chkList,strPrice);
+
+        int numerator = 1;
+        int denominator = 0;
+        int result = numerator / denominator;
+
+        int int1 = menuDao.doInsertLogOne(chkList,strPrice);
+        return int1;
     }
 }

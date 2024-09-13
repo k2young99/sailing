@@ -111,7 +111,7 @@
 <script>
     /* 현재 시간 날짜에 적용시키기 */
     const now = new Date();	// 현재 날짜 및 시간
-    const time7 = new Date(now.setDate(now.getDate() - 100));	// 기간 설정
+    const time7 = new Date(now.setDate(now.getDate() - 1000));	// 기간 설정
     document.getElementById("start_date").value = time7.toISOString().slice(0, 10);
     document.getElementById("end_date").value = new Date().toISOString().slice(0, 10);
 

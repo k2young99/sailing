@@ -29,6 +29,8 @@ spring:
     url: jdbc:mariadb://localhost:3306/boot
     username: boot
     password: boot
+    hikari:
+      auto-commit: false
 
 --- # Configuration mybatis
 mybatis:
